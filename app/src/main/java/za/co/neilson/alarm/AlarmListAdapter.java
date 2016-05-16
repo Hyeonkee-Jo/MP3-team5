@@ -16,6 +16,8 @@ import java.util.List;
 
 import za.co.neilson.alarm.database.Database;
 import za.co.neilson.alarm.R;
+import za.co.neilson.alarm.group.Group;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +61,7 @@ public class AlarmListAdapter extends BaseAdapter {
 					R.layout.alarm_list_element, null);
 
 		Alarm alarm = (Alarm) getItem(position);
+		Group group = new Group(alarm, null);
 
 		 CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBox_alarm_active);
 		 checkBox.setChecked(alarm.getAlarmActive());
@@ -70,10 +73,13 @@ public class AlarmListAdapter extends BaseAdapter {
 		alarmTimeView.setText(alarm.getAlarmTimeString());
 
 		
-			TextView alarmDaysView = (TextView) view
-					.findViewById(R.id.textView_alarm_days);
-			alarmDaysView.setText(alarm.getRepeatDaysString());
-		
+		TextView alarmDaysView = (TextView) view
+				.findViewById(R.id.textView_alarm_days);
+		alarmDaysView.setText(alarm.getRepeatDaysString());
+
+		TextView alarmIdView = (TextView) view
+				.findViewById(R.id.textView_alarm_id);
+		alarmIdView.setText(group.getCode());
 
 		return view;
 	}

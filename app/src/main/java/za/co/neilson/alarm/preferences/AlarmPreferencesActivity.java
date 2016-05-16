@@ -321,7 +321,7 @@ public class AlarmPreferencesActivity extends BaseActivity {
 		case R.id.menu_item_delete:
 			AlertDialog.Builder dialog = new AlertDialog.Builder(AlarmPreferencesActivity.this);
 			dialog.setTitle("Delete");
-			dialog.setMessage("Delete this alarm?");
+			dialog.setMessage("알람을 삭제하시겠습니까??");
 			dialog.setPositiveButton("Ok", new OnClickListener() {
 
 				@Override

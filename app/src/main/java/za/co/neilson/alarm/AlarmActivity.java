@@ -76,7 +76,7 @@ public class AlarmActivity extends BaseActivity {
 				final Alarm alarm = (Alarm) alarmListAdapter.getItem(position);
 				Builder dialog = new Builder(AlarmActivity.this);
 				dialog.setTitle("Delete");
-				dialog.setMessage("Delete this alarm?");
+				dialog.setMessage("알람을 삭제하시겠습니까?");
 				dialog.setPositiveButton("Ok", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {

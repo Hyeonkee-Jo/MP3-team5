@@ -161,7 +161,7 @@ public class AlarmPreferenceListAdapter extends BaseAdapter implements Serializa
 	public void setMathAlarm(Alarm alarm) {
 		this.alarm = alarm;
 		preferences.clear();
-		preferences.add(new AlarmPreference(AlarmPreference.Key.ALARM_ACTIVE,"Active", null, null, alarm.getAlarmActive(),Type.BOOLEAN));
+		preferences.add(new AlarmPreference(AlarmPreference.Key.ALARM_ACTIVE,"활성화", null, null, alarm.getAlarmActive(),Type.BOOLEAN));
 		preferences.add(new AlarmPreference(AlarmPreference.Key.ALARM_NAME, "Label",alarm.getAlarmName(), null, alarm.getAlarmName(), Type.STRING));
 		preferences.add(new AlarmPreference(AlarmPreference.Key.ALARM_TIME, "Set time",alarm.getAlarmTimeString(), null, alarm.getAlarmTime(), Type.TIME));
 		preferences.add(new AlarmPreference(AlarmPreference.Key.ALARM_REPEAT, "Repeat",alarm.getRepeatDaysString(), repeatDays, alarm.getDays(),Type.MULTIPLE_LIST));

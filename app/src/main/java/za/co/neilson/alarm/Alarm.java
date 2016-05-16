@@ -323,21 +323,21 @@ public class Alarm implements Serializable {
 		long hours = timeDifference / (1000 * 60 * 60) - (days * 24);
 		long minutes = timeDifference / (1000 * 60) - (days * 24 * 60) - (hours * 60);
 		long seconds = timeDifference / (1000) - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
-		String alert = "Alarm will sound in ";
+		String alert = "알람까지 ";
 		if (days > 0) {
 			alert += String.format(
-					"%d days, %d hours, %d minutes and %d seconds", days,
+					"%d 일, %d 시간, %d 분 %d 초", days,
 					hours, minutes, seconds);
 		} else {
 			if (hours > 0) {
-				alert += String.format("%d hours, %d minutes and %d seconds",
+				alert += String.format("%d 시간, %d 분 %d 초",
 						hours, minutes, seconds);
 			} else {
 				if (minutes > 0) {
-					alert += String.format("%d minutes, %d seconds", minutes,
+					alert += String.format("%d 분, %d 초", minutes,
 							seconds);
 				} else {
-					alert += String.format("%d seconds", seconds);
+					alert += String.format("%d 초", seconds);
 				}
 			}
 		}

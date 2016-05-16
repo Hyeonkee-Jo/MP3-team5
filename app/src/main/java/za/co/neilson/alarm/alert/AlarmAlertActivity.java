@@ -14,7 +14,11 @@ package za.co.neilson.alarm.alert;
 import za.co.neilson.alarm.Alarm;
 import za.co.neilson.alarm.R;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.KeyguardManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -24,6 +28,7 @@ import android.os.Vibrator;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.HapticFeedbackConstants;
@@ -53,9 +58,10 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		final Window window = getWindow();
 		window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-				| WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+				& WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 		window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 				| WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+
 
 		setContentView(R.layout.alarm_alert);
 
@@ -134,7 +140,6 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 				PhoneStateListener.LISTEN_CALL_STATE);
 
 		// Toast.makeText(this, answerString, Toast.LENGTH_LONG).show();
-
 		startAlarm();
 
 	}
@@ -171,6 +176,21 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 
 	}
 
+
+
+	public void onUserLeaveHint() {
+		Context context = getApplicationContext(); // 자동으로 화면이동
+		AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+
+		//Intent Intent = new Intent("a.a");
+		Intent Intent = new Intent(AlarmAlertActivity.this, AlarmAlertActivity.class );
+		Intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP );
+		PendingIntent pIntent = PendingIntent.getActivity(context, 0, Intent, 0);
+
+		alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + 0, pIntent);
+
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -181,6 +201,14 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 		if (!alarmActive)
 			super.onBackPressed();
 	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if(keyCode == KeyEvent.KEYCODE_MENU)
+			return false;
+		return super.onKeyDown(keyCode, event);
+	}
+
 
 	/*
 	 * (non-Javadoc)
@@ -240,6 +268,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 		} else {
 			answerBuilder.append(button);
 			answerView.setText(answerBuilder.toString());
+			// 여기를 설정을 해서 그룹이 모두 성공했을 때를
 			if (isAnswerCorrect()) {
 				alarmActive = false;
 				if (vibrator != null)

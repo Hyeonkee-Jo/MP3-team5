@@ -30,6 +30,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="@string/no_alarms" />
+        android:text="설정된 알람이 없습니다." />
 
 </LinearLayout>
