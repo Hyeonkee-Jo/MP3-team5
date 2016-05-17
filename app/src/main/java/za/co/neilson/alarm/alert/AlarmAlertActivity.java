@@ -12,6 +12,7 @@
 package za.co.neilson.alarm.alert;
 
 import za.co.neilson.alarm.Alarm;
+import za.co.neilson.alarm.HomeKeyLocker;
 import za.co.neilson.alarm.R;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -52,6 +53,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 	private TextView problemView;
 	private TextView answerView;
 	private String answerString;
+	HomeKeyLocker homeKeyLoader = new HomeKeyLocker();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 		window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 				| WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
+		homeKeyLoader.lock(this);
 
 		setContentView(R.layout.alarm_alert);
 
@@ -176,8 +179,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 
 	}
 
-
-
+	/* 필요없어질듯
 	public void onUserLeaveHint() {
 		Context context = getApplicationContext(); // 자동으로 화면이동
 		AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -193,22 +195,25 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see android.app.Activity#onBackPressed()
 	 */
+	/*
 	@Override
 	public void onBackPressed() {
 		if (!alarmActive)
 			super.onBackPressed();
 	}
 
+	/* 필요없어질듯
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(keyCode == KeyEvent.KEYCODE_MENU)
 			return false;
+		if(keyCode == KeyEvent.KEYCODE_HOME)
+			return false;
 		return super.onKeyDown(keyCode, event);
 	}
-
 
 	/*
 	 * (non-Javadoc)
@@ -219,6 +224,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 	protected void onPause() {
 		super.onPause();
 		StaticWakeLock.lockOff(this);
+		homeKeyLoader.unlock();
 	}
 
 	@Override

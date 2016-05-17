@@ -75,7 +75,7 @@ public class AlarmActivity extends BaseActivity {
 				view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
 				final Alarm alarm = (Alarm) alarmListAdapter.getItem(position);
 				Builder dialog = new Builder(AlarmActivity.this);
-				dialog.setTitle("Delete");
+				dialog.setTitle("알람 삭제");
 				dialog.setMessage("알람을 삭제하시겠습니까?");
 				dialog.setPositiveButton("Ok", new OnClickListener() {
 					@Override

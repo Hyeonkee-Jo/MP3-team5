@@ -37,11 +37,11 @@ public class Alarm implements Serializable {
 		public String toString() {
 			switch(this.ordinal()){
 				case 0:
-					return "Easy";
+					return "쉬움";
 				case 1:
-					return "Medium";
+					return "보통";
 				case 2:
-					return "Hard";
+					return "어려움";
 			}
 			return super.toString();
 		}
@@ -277,7 +277,7 @@ public class Alarm implements Serializable {
 	public String getRepeatDaysString() {
 		StringBuilder daysStringBuilder = new StringBuilder();
 		if(getDays().length == Day.values().length){
-			daysStringBuilder.append("Every Day");		
+			daysStringBuilder.append("매일");
 		}else{
 			Arrays.sort(getDays(), new Comparator<Day>() {
 				@Override
