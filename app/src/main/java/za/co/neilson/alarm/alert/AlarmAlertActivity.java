@@ -179,7 +179,7 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 
 	}
 
-	/* 필요없어질듯
+
 	public void onUserLeaveHint() {
 		Context context = getApplicationContext(); // 자동으로 화면이동
 		AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -198,19 +198,17 @@ public class AlarmAlertActivity extends Activity implements OnClickListener {
 	 *
 	 * @see android.app.Activity#onBackPressed()
 	 */
-	/*
+
 	@Override
 	public void onBackPressed() {
 		if (!alarmActive)
 			super.onBackPressed();
 	}
 
-	/* 필요없어질듯
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(keyCode == KeyEvent.KEYCODE_MENU)
-			return false;
-		if(keyCode == KeyEvent.KEYCODE_HOME)
 			return false;
 		return super.onKeyDown(keyCode, event);
 	}
